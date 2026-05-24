@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>egg6112の自己紹介!!</title>
+  <style>
+    :root {
+      --bg:           #f0f4f8;
+      --card:         #ffffff;
+      --text:         #333333;
+      --text-sub:     #444444;
+      --label:        #7a9abf;
+      --tag-bg:       #e8f1fb;
+      --tag-color:    #3b72b0;
+      --divider:      #eaecf0;
+      --h1:           #1a1a2e;
+      --bar-bg:       #dce9f7;
+      --bar-fill:     #3b72b0;
+      --counter-bg:   #eef5ff;
+      --counter-text: #3b72b0;
+      --btn-bg:       #1a1a2e;
+      --btn-hover:    #2e2e50;
+      --toggle-bg:    #dce9f7;
+      --toggle-icon:  "🌙";
+    }
+
+    [data-theme="dark"] {
+      --bg:           #0f172a;
+      --card:         #1e293b;
+      --text:         #e2e8f0;
+      --text-sub:     #94a3b8;
+      --label:        #60a5fa;
+      --tag-bg:       #1e3a5f;
+      --tag-color:    #93c5fd;
+      --divider:      #334155;
+      --h1:           #e2e8f0;
+      --bar-bg:       #1e3a5f;
+      --bar-fill:     #60a5fa;
+      --counter-bg:   #1e293b;
+      --counter-text: #60a5fa;
+      --btn-bg:       #3b72b0;
+      --btn-hover:    #60a5fa;
+      --toggle-bg:    #334155;
+      --toggle-icon:  "☀️";
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* ── ダークモード切り替えボタン ── */
+    #theme-toggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background-color: var(--toggle-bg);
+      border: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      transition: background-color 0.3s, transform 0.2s;
+      z-index: 100;
+    }
+
+    #theme-toggle:hover {
+      transform: scale(1.12);
+    }
+
+    /* ── カード ── */
+    .card {
+      background-color: var(--card);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      max-width: 520px;
+      width: 100%;
+      padding: 48px 40px;
+      transition: background-color 0.3s;
+    }
+
+    /* ── アバター ── */
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: #c7dff7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 24px;
+      transition: transform 0.3s;
+      cursor: default;
+    }
+
+    .avatar:hover {
+      transform: scale(1.12) rotate(8deg);
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-align: center;
+      color: var(--h1);
+      margin-bottom: 32px;
+      transition: color 0.3s;
+    }
+
+    /* ── セクション共通 ── */
+    .section {
+      margin-bottom: 24px;
+    }
+
+    .section h2 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--label);
+      margin-bottom: 8px;
+      transition: color 0.3s;
+    }
+
+    .section p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text-sub);
+      transition: color 0.3s;
+    }
+
+    /* ── タグ ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background-color: var(--tag-bg);
+      color: var(--tag-color);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: background-color 0.3s, color 0.3s, transform 0.2s;
+    }
+
+    .tag:hover {
+      transform: translateY(-3px);
+    }
+
+    /* ── プログレスバー ── */
+    .skill-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .skill-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: var(--text-sub);
+      transition: color 0.3s;
+    }
+
+    .skill-bar-bg {
+      height: 8px;
+      background-color: var(--bar-bg);
+      border-radius: 99px;
+      overflow: hidden;
+      transition: background-color 0.3s;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      background-color: var(--bar-fill);
+      border-radius: 99px;
+      width: 0;
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s;
+    }
+
+    /* ── 訪問カウンター ── */
+    .visit-counter {
+      background-color: var(--counter-bg);
+      border-radius: 10px;
+      padding: 10px 16px;
+      text-align: center;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--counter-text);
+      margin-bottom: 24px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* ── 区切り線 ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--divider);
+      margin: 24px 0;
+      transition: border-color 0.3s;
+    }
+
+    /* ── リンクボタン ── */
+    .link-button {
+      display: block;
+      text-align: center;
+      background-color: var(--btn-bg);
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .link-button:hover {
+      background-color: var(--btn-hover);
+      transform: translateY(-2px);
+    }
+
+    /* ── フェードインアニメーション ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 32px 24px;
+      }
+
+      h1 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button id="theme-toggle" aria-label="ダークモード切り替え">🌙</button>
+
+  <div class="card">
+    <div class="avatar fade-in">🥚</div>
+    <h1 class="fade-in">egg6112の自己紹介</h1>
+
+    <div class="visit-counter fade-in" id="visit-counter">読み込み中...</div>
+
+    <div class="section fade-in">
+      <h2>名前</h2>
+      <p>egg6112</p>
+    </div>
+
+    <div class="section fade-in">
+      <h2>趣味</h2>
+      <p>散歩</p>
+    </div>
+
+    <div class="section fade-in">
+      <h2>学習中</h2>
+      <div class="tags">
+        <span class="tag">GitHub</span>
+        <span class="tag">Claude Code</span>
+        <span class="tag">HTML/CSS</span>
+        <span class="tag">Markdown</span>
+      </div>
+    </div>
+
+    <div class="section fade-in">
+      <h2>スキルレベル（自己評価）</h2>
+      <div class="skill-list">
+        <div class="skill-item">
+          <div class="skill-label"><span>Claude Code</span><span>50%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="50"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>GitHub</span><span>30%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="30"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>Markdown</span><span>40%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="40"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>HTML/CSS</span><span>20%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="20"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider fade-in">
+
+    <a
+      class="link-button fade-in"
+      href="https://github.com/egg6112/about-me"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      GitHubリポジトリを見る
+    </a>
+  </div>
+
+  <script>
+    // ── ダークモード ──
+    const toggle = document.getElementById('theme-toggle');
+    const saved = localStorage.getItem('theme') || 'light';
+    applyTheme(saved);
+
+    toggle.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      localStorage.setItem('theme', next);
+    });
+
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+
+    // ── 訪問カウンター ──
+    const key = 'visit_count_about_me';
+    const count = (parseInt(localStorage.getItem(key) || '0', 10)) + 1;
+    localStorage.setItem(key, count);
+    document.getElementById('visit-counter').textContent = `あなたは ${count} 回目の訪問です 👋`;
+
+    // ── フェードイン（IntersectionObserver）──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 80}ms`;
+      observer.observe(el);
+    });
+
+    // ── プログレスバー（表示されたタイミングでアニメーション）──
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+            bar.style.width = bar.dataset.width + '%';
+          });
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.skill-list').forEach(el => barObserver.observe(el));
+  </script>
+</body>
+</html>
