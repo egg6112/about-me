@@ -87,6 +87,11 @@
       transform: scale(1.12);
     }
 
+    #theme-toggle:focus-visible {
+      outline: 3px solid var(--bar-fill);
+      outline-offset: 2px;
+    }
+
     /* ── カード ── */
     .card {
       background-color: var(--card);
@@ -258,6 +263,17 @@
       transform: translateY(0);
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .fade-in {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
     @media (max-width: 480px) {
       .card {
         padding: 32px 24px;
@@ -348,6 +364,7 @@
     function applyTheme(theme) {
       document.documentElement.dataset.theme = theme;
       toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+      toggle.setAttribute('aria-label', theme === 'dark' ? 'ライトモードに切り替える' : 'ダークモードに切り替える');
     }
 
     // ── 訪問カウンター ──
