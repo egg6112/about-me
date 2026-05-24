@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>egg6112の自己紹介!!</title>
+  <meta property="og:title"       content="egg6112の自己紹介">
+  <meta property="og:description" content="Web制作を学習中。GitHub・Claude Code・HTML/CSSを勉強しています。">
+  <meta property="og:url"         content="https://egg6112.github.io/about-me/">
+  <meta property="og:type"        content="website">
+  <meta name="twitter:card"       content="summary">
+  <meta name="twitter:title"      content="egg6112の自己紹介">
   <style>
     :root {
       --bg:           #f0f4f8;
@@ -383,8 +389,9 @@
       });
     }, { threshold: 0.15 });
 
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     document.querySelectorAll('.fade-in').forEach((el, i) => {
-      el.style.transitionDelay = `${i * 80}ms`;
+      if (!reducedMotion) el.style.transitionDelay = `${i * 80}ms`;
       observer.observe(el);
     });
 
