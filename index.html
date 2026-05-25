@@ -365,6 +365,7 @@
       href="https://github.com/egg6112/about-me"
       target="_blank"
       rel="noopener noreferrer"
+      aria-label="GitHubリポジトリを見る（新しいタブで開きます）"
     >
       GitHubリポジトリを見る
     </a>
@@ -402,7 +403,7 @@
     const VISIT_COUNT_KEY = 'visit_count_about_me';
     const count = (parseInt(getStorage(VISIT_COUNT_KEY, '0'), 10)) + 1;
     setStorage(VISIT_COUNT_KEY, count);
-    document.getElementById('visit-counter').textContent = `あなたは ${count} 回目の訪問です 👋`;
+    document.getElementById('visit-counter').innerHTML = `あなたは ${count} 回目の訪問です <span aria-hidden="true">👋</span>`;
 
     // ── フェードイン（IntersectionObserver）──
     const observer = new IntersectionObserver((entries) => {
@@ -425,6 +426,7 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+            if (reducedMotion) bar.style.transition = 'none';
             bar.style.width = bar.dataset.width + '%';
           });
           barObserver.unobserve(entry.target);
