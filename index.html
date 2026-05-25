@@ -9,11 +9,11 @@
   <meta property="og:description" content="Web制作を学習中。GitHub・Claude Code・HTML/CSSを勉強しています。">
   <meta property="og:url"         content="https://egg6112.github.io/about-me/">
   <meta property="og:type"        content="website">
-  <meta property="og:image"       content="https://github.com/egg6112.png">
+  <meta property="og:image"       content="https://avatars.githubusercontent.com/egg6112">
   <meta name="twitter:card"        content="summary">
   <meta name="twitter:title"       content="egg6112の自己紹介">
   <meta name="twitter:description" content="Web制作を学習中。GitHub・Claude Code・HTML/CSSを勉強しています。">
-  <meta name="twitter:image"       content="https://github.com/egg6112.png">
+  <meta name="twitter:image"       content="https://avatars.githubusercontent.com/egg6112">
   <style>
     :root {
       --bg:           #f0f4f8;
@@ -310,7 +310,7 @@
 
   <button id="theme-toggle" aria-label="ダークモードに切り替える">🌙</button>
 
-  <div class="card">
+  <main class="card">
     <div class="avatar fade-in" aria-hidden="true">🥚</div>
     <h1 class="fade-in">egg6112の自己紹介</h1>
 
@@ -369,7 +369,7 @@
     >
       GitHubリポジトリを見る
     </a>
-  </div>
+  </main>
 
   <script>
     // ── localStorage ヘルパー（プライベートブラウズ等の例外を吸収）──
@@ -403,7 +403,12 @@
     const VISIT_COUNT_KEY = 'visit_count_about_me';
     const count = (parseInt(getStorage(VISIT_COUNT_KEY, '0'), 10)) + 1;
     setStorage(VISIT_COUNT_KEY, count);
-    document.getElementById('visit-counter').innerHTML = `あなたは ${count} 回目の訪問です <span aria-hidden="true">👋</span>`;
+    const counter = document.getElementById('visit-counter');
+    counter.textContent = `あなたは ${count} 回目の訪問です `;
+    const emoji = document.createElement('span');
+    emoji.setAttribute('aria-hidden', 'true');
+    emoji.textContent = '👋';
+    counter.appendChild(emoji);
 
     // ── フェードイン（IntersectionObserver）──
     const observer = new IntersectionObserver((entries) => {
