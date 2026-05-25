@@ -305,7 +305,7 @@
     <div class="avatar fade-in" aria-hidden="true">🥚</div>
     <h1 class="fade-in">egg6112の自己紹介</h1>
 
-    <div class="visit-counter fade-in" id="visit-counter">読み込み中...</div>
+    <div class="visit-counter fade-in" id="visit-counter" aria-live="polite">読み込み中...</div>
 
     <div class="section fade-in">
       <h2>名前</h2>
@@ -362,15 +362,25 @@
   </div>
 
   <script>
+    // ── localStorage ヘルパー（プライベートブラウズ等の例外を吸収）──
+    function getStorage(key, fallback = null) {
+      try { return localStorage.getItem(key) ?? fallback; }
+      catch { return fallback; }
+    }
+    function setStorage(key, value) {
+      try { localStorage.setItem(key, value); }
+      catch { /* プライベートブラウジング等では無視 */ }
+    }
+
     // ── ダークモード ──
     const toggle = document.getElementById('theme-toggle');
-    const saved = localStorage.getItem('theme') || 'light';
+    const saved = getStorage('theme', 'light');
     applyTheme(saved);
 
     toggle.addEventListener('click', () => {
       const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
       applyTheme(next);
-      localStorage.setItem('theme', next);
+      setStorage('theme', next);
     });
 
     function applyTheme(theme) {
@@ -381,8 +391,8 @@
 
     // ── 訪問カウンター ──
     const key = 'visit_count_about_me';
-    const count = (parseInt(localStorage.getItem(key) || '0', 10)) + 1;
-    localStorage.setItem(key, count);
+    const count = (parseInt(getStorage(key, '0'), 10)) + 1;
+    setStorage(key, count);
     document.getElementById('visit-counter').textContent = `あなたは ${count} 回目の訪問です 👋`;
 
     // ── フェードイン（IntersectionObserver）──
