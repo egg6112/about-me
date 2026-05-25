@@ -1,0 +1,14 @@
+# Claude Code の個人設定(チーム共有しない)
+.claude/settings.local.json
+
+# OS が自動生成するファイル
+Thumbs.db
+.DS_Store
+
+# エディタの一時ファイル
+*.swp
+*.swo
+*~
+
+# ログファイル
+*.log
