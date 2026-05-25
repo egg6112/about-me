@@ -9,6 +9,7 @@
   <meta property="og:description" content="Web制作を学習中。GitHub・Claude Code・HTML/CSSを勉強しています。">
   <meta property="og:url"         content="https://egg6112.github.io/about-me/">
   <meta property="og:type"        content="website">
+  <meta property="og:image"       content="https://github.com/egg6112.png">
   <meta name="twitter:card"        content="summary">
   <meta name="twitter:title"       content="egg6112の自己紹介">
   <meta name="twitter:description" content="Web制作を学習中。GitHub・Claude Code・HTML/CSSを勉強しています。">
@@ -257,6 +258,11 @@
       transform: translateY(-2px);
     }
 
+    .link-button:focus-visible {
+      outline: 3px solid var(--bar-fill);
+      outline-offset: 2px;
+    }
+
     /* ── フェードインアニメーション ── */
     .fade-in {
       opacity: 0;
@@ -293,7 +299,7 @@
 </head>
 <body>
 
-  <button id="theme-toggle" aria-label="ダークモード切り替え">🌙</button>
+  <button id="theme-toggle" aria-label="ダークモードに切り替える">🌙</button>
 
   <div class="card">
     <div class="avatar fade-in" aria-hidden="true">🥚</div>
@@ -326,19 +332,19 @@
       <div class="skill-list">
         <div class="skill-item">
           <div class="skill-label"><span>Claude Code</span><span>50%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="50"></div></div>
+          <div class="skill-bar-bg" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" aria-label="Claude Code"><div class="skill-bar-fill" data-width="50"></div></div>
         </div>
         <div class="skill-item">
           <div class="skill-label"><span>GitHub</span><span>30%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="30"></div></div>
+          <div class="skill-bar-bg" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" aria-label="GitHub"><div class="skill-bar-fill" data-width="30"></div></div>
         </div>
         <div class="skill-item">
           <div class="skill-label"><span>Markdown</span><span>40%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="40"></div></div>
+          <div class="skill-bar-bg" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" aria-label="Markdown"><div class="skill-bar-fill" data-width="40"></div></div>
         </div>
         <div class="skill-item">
           <div class="skill-label"><span>HTML/CSS</span><span>20%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="20"></div></div>
+          <div class="skill-bar-bg" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" aria-label="HTML/CSS"><div class="skill-bar-fill" data-width="20"></div></div>
         </div>
       </div>
     </div>
