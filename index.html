@@ -240,6 +240,74 @@
       transition: border-color 0.3s;
     }
 
+    /* ── プロジェクトカード ── */
+    .project-card {
+      display: block;
+      background-color: var(--bg);
+      border: 1px solid var(--divider);
+      border-radius: 12px;
+      padding: 16px 16px 14px;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background-color 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      border-color: var(--tag-color);
+    }
+
+    .project-card:focus-visible {
+      outline: 3px solid var(--bar-fill);
+      outline-offset: 2px;
+    }
+
+    .project-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      color: var(--label);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .project-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #BA7517; /* amber accent (ダッシュボード側との橋渡し) */
+      flex: 0 0 auto;
+    }
+
+    .project-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--h1);
+      margin-bottom: 6px;
+      line-height: 1.4;
+      transition: color 0.3s;
+    }
+
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+      transition: color 0.3s;
+    }
+
+    .project-arrow {
+      color: var(--tag-color);
+      font-weight: 500;
+      font-size: 0.85rem;
+      margin-top: 10px;
+      transition: color 0.3s;
+    }
+
     /* ── リンクボタン ── */
     .link-button {
       display: block;
@@ -334,6 +402,23 @@
         <span class="tag">HTML/CSS</span>
         <span class="tag">Markdown</span>
       </div>
+    </div>
+
+    <div class="section fade-in">
+      <h2>プロジェクト</h2>
+      <a
+        class="project-card"
+        href="projects/mlb-j-analysis-01/"
+        aria-label="MLB日本人野手の打撃特徴分析を見る"
+      >
+        <div class="project-meta">
+          <span class="project-dot" aria-hidden="true"></span>
+          <span>data analysis · statcast</span>
+        </div>
+        <div class="project-title">MLB日本人野手の打撃特徴分析</div>
+        <div class="project-desc">大谷・吉田・鈴木の打撃を 2024 Statcast の約162,000打球と比較。Launch Angle と Exit Velocity から3者三様のタイプを可視化。</div>
+        <div class="project-arrow">View dashboard →</div>
+      </a>
     </div>
 
     <div class="section fade-in">
