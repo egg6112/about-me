@@ -12,3 +12,7 @@ Thumbs.db
 
 # ログファイル
 *.log
+
+# Claude Code 指示書(公開しない)
+CC_INSTRUCTION*.md
+
