@@ -39,7 +39,6 @@ body {
   background-image:
     radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 160, 86, 0.08), transparent),
     radial-gradient(ellipse 60% 50% at 80% 50%, rgba(58, 134, 255, 0.04), transparent);
-  background-attachment: fixed;
   min-height: 100vh;
 }
 
@@ -573,6 +572,11 @@ section, .kpi-hero { animation: fadeUp 0.6s ease-out backwards; }
 section:nth-child(2) { animation-delay: 0.05s; }
 section:nth-child(3) { animation-delay: 0.1s; }
 section:nth-child(4) { animation-delay: 0.15s; }
+
+@media (prefers-reduced-motion: reduce) {
+  section, .kpi-hero { animation: none; }
+  html { scroll-behavior: auto; }
+}
 </style>
 </head>
 <body>
@@ -625,12 +629,13 @@ section:nth-child(4) { animation-delay: 0.15s; }
 
   <div class="table-wrap">
     <table>
+      <caption>分析のデータソース・対象・環境の概要</caption>
       <tbody>
-        <tr><td style="width:30%">データソース</td><td style="font-family:'Noto Sans JP',sans-serif">Baseball Savant (Statcast) · pybaseball 経由</td></tr>
-        <tr><td>対象シーズン</td><td>2024年レギュラーシーズン (3/28 〜 9/30)</td></tr>
-        <tr><td>対象選手</td><td>Shohei Ohtani (660271) / Masataka Yoshida (807799) / Seiya Suzuki (673548)</td></tr>
-        <tr><td>母集団</td><td>各月初1週間の計6週間サンプル(160,234球)から、30打球以上を記録した448選手 = 51,006打球</td></tr>
-        <tr><td>分析環境</td><td>Python 3 / pandas / matplotlib (Meiryo)</td></tr>
+        <tr><th scope="row" style="width:30%">データソース</th><td style="font-family:'Noto Sans JP',sans-serif">Baseball Savant (Statcast) · pybaseball 経由</td></tr>
+        <tr><th scope="row">対象シーズン</th><td>2024年レギュラーシーズン (3/28 〜 9/30)</td></tr>
+        <tr><th scope="row">対象選手</th><td>Shohei Ohtani (660271) / Masataka Yoshida (807799) / Seiya Suzuki (673548)</td></tr>
+        <tr><th scope="row">母集団</th><td>各月初1週間の計6週間サンプル(160,234球)から、30打球以上を記録した448選手 = 51,006打球</td></tr>
+        <tr><th scope="row">分析環境</th><td>Python 3 / pandas / matplotlib (Meiryo)</td></tr>
       </tbody>
     </table>
   </div>
@@ -655,7 +660,7 @@ section:nth-child(4) { animation-delay: 0.15s; }
       <div class="figure-id">FIG · 01</div>
       <div class="figure-caption-top">Launch Angle × Exit Velocity / Per player vs MLB density</div>
     </div>
-    <div class="figure-body"><img src="images/fig1_panels.png" alt="Panel scatter"></div>
+    <div class="figure-body"><img src="images/fig1_panels.png" alt="大谷・吉田・鈴木の打球を Launch Angle × Exit Velocity でプロットし、MLBレギュラー打者の密度マップと重ねた4枚組パネル散布図" loading="lazy"></div>
   </div>
 
   <h3>Launch Angle 分布</h3>
@@ -666,7 +671,7 @@ section:nth-child(4) { animation-delay: 0.15s; }
       <div class="figure-id">FIG · 02</div>
       <div class="figure-caption-top">Launch Angle distribution (density, kernel-style histograms)</div>
     </div>
-    <div class="figure-body"><img src="images/fig2_LA_hist.png" alt="LA histogram"></div>
+    <div class="figure-body"><img src="images/fig2_LA_hist.png" alt="Launch Angle（打球角度）の分布ヒストグラム。吉田が0°付近に集中、大谷がMLB平均と同形、鈴木が30–50°帯に厚みを持つ3者三様のパターンを示す" loading="lazy"></div>
   </div>
 
   <h3>Exit Velocity 分布 — この分析の核心</h3>
@@ -677,7 +682,7 @@ section:nth-child(4) { animation-delay: 0.15s; }
       <div class="figure-id">FIG · 03</div>
       <div class="figure-caption-top">Exit Velocity distribution / Ohtani shows bimodal pattern</div>
     </div>
-    <div class="figure-body"><img src="images/fig3_EV_hist.png" alt="EV histogram"></div>
+    <div class="figure-body"><img src="images/fig3_EV_hist.png" alt="Exit Velocity（打球初速）の分布ヒストグラム。大谷のみが105–115mph付近に第二の山を持つ二峰性（バイモーダル）分布を形成し、MLBを大きく上回る超高速打球を量産している" loading="lazy"></div>
   </div>
 
   <div class="callout">
@@ -699,18 +704,19 @@ section:nth-child(4) { animation-delay: 0.15s; }
       <div class="figure-id">FIG · 06</div>
       <div class="figure-caption-top">Quality metrics comparison</div>
     </div>
-    <div class="figure-body"><img src="images/fig6_quality_rates.png" alt="Quality rates"></div>
+    <div class="figure-body"><img src="images/fig6_quality_rates.png" alt="Barrel率・Sweet Spot率・Hard Hit率の3打球品質指標を大谷・吉田・鈴木・MLB平均で比較した棒グラフ。大谷がBarrel率・Hard Hit率で群を抜く" loading="lazy"></div>
   </div>
 
   <div class="table-wrap">
     <table>
+      <caption>打球品質指標（Barrel率・Sweet Spot率・Hard Hit率）の3選手とMLB平均比較</caption>
       <thead>
         <tr>
-          <th>指標</th>
-          <th class="col-ohtani">Ohtani</th>
-          <th class="col-yoshida">Yoshida</th>
-          <th class="col-suzuki">Suzuki</th>
-          <th class="col-mlb">MLB</th>
+          <th scope="col">指標</th>
+          <th scope="col" class="col-ohtani">Ohtani</th>
+          <th scope="col" class="col-yoshida">Yoshida</th>
+          <th scope="col" class="col-suzuki">Suzuki</th>
+          <th scope="col" class="col-mlb">MLB</th>
         </tr>
       </thead>
       <tbody>
@@ -742,18 +748,19 @@ section:nth-child(4) { animation-delay: 0.15s; }
       <div class="figure-id">FIG · 04</div>
       <div class="figure-caption-top">Distribution of outcomes per batted ball</div>
     </div>
-    <div class="figure-body"><img src="images/fig4_result_share.png" alt="Result share"></div>
+    <div class="figure-body"><img src="images/fig4_result_share.png" alt="打球結果（単打・二塁打・本塁打・アウト）の割合を大谷・吉田・鈴木・MLB平均で比較した積み上げグラフ。大谷の本塁打率がMLB平均の2.6倍を示す" loading="lazy"></div>
   </div>
 
   <div class="table-wrap">
     <table>
+      <caption>打球結果（単打・二塁打・本塁打・アウト）の割合比較</caption>
       <thead>
         <tr>
-          <th>結果</th>
-          <th class="col-ohtani">Ohtani</th>
-          <th class="col-yoshida">Yoshida</th>
-          <th class="col-suzuki">Suzuki</th>
-          <th class="col-mlb">MLB</th>
+          <th scope="col">結果</th>
+          <th scope="col" class="col-ohtani">Ohtani</th>
+          <th scope="col" class="col-yoshida">Yoshida</th>
+          <th scope="col" class="col-suzuki">Suzuki</th>
+          <th scope="col" class="col-mlb">MLB</th>
         </tr>
       </thead>
       <tbody>
@@ -774,18 +781,19 @@ section:nth-child(4) { animation-delay: 0.15s; }
       <div class="figure-id">FIG · 05</div>
       <div class="figure-caption-top">wOBAcon by batted ball type</div>
     </div>
-    <div class="figure-body"><img src="images/fig5_woba_by_bbtype.png" alt="wOBA by bb type"></div>
+    <div class="figure-body"><img src="images/fig5_woba_by_bbtype.png" alt="打球タイプ別（ゴロ・ライナー・フライ・ポップフライ）のwOBAconを大谷・吉田・鈴木・MLB平均で比較した棒グラフ。鈴木のライナーwOBAconが3選手中トップ" loading="lazy"></div>
   </div>
 
   <div class="table-wrap">
     <table>
+      <caption>打球タイプ別wOBAcon（打球あたりの得点期待値）の3選手とMLB平均比較</caption>
       <thead>
         <tr>
-          <th>打球タイプ</th>
-          <th class="col-ohtani">Ohtani</th>
-          <th class="col-yoshida">Yoshida</th>
-          <th class="col-suzuki">Suzuki</th>
-          <th class="col-mlb">MLB</th>
+          <th scope="col">打球タイプ</th>
+          <th scope="col" class="col-ohtani">Ohtani</th>
+          <th scope="col" class="col-yoshida">Yoshida</th>
+          <th scope="col" class="col-suzuki">Suzuki</th>
+          <th scope="col" class="col-mlb">MLB</th>
         </tr>
       </thead>
       <tbody>
