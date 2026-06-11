@@ -44,6 +44,14 @@ Manhattan Distance + Linear Conflict ヒューリスティックを採用。
 - **公開ページ:** <https://egg6112.github.io/three-body-simulator/>
 - **使用技術:** React · Canvas 2D API · Vite · GitHub Actions
 
+### ⚓ 戦艦大和 3D インタラクティブビューア `CLAUDE FABLE5`
+
+IJN YAMATO をフルスクラッチでプロシージャル生成した 3D ビューア。
+外部 3D モデル・画像アセット一切なし。46cm 三連装主砲・副砲・高角砲のアニメーション、PBR マテリアル、波シェーダの海、煙突の煙エフェクトをブラウザだけで体験できる。
+
+- **公開ページ:** <https://egg6112.github.io/yamato-3d/>
+- **使用技術:** Three.js r160 · Canvas 2D API · ES Modules · GitHub Pages
+
 ## ファイル構成
 
 | ファイル / フォルダ                    | 説明                                          |
